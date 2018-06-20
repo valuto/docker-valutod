@@ -37,30 +37,20 @@ It is also recommended to set alertnotify so you are notified of problems;
 for example: alertnotify=echo %s | mail -s "Valuto Alert" admin@foo.com
 ```
 
-You should create the file valutod.conf in the `valuto-data` directory and append the two 
+You should create the file valuto.conf in the `valuto-data` directory and append the two 
 lines suggested by `valutod`. `valutod` will suggest a random password for you. Do not use the one from the example above.
 
-After creating the valutod.conf file, the container can be started again. For your own convenience, 
-use the `--detach` option to release the shell after starting the container.
+After creating the valuto.conf file, the container can be started again.
 
-```
-docker run \
-  --detach \
-  --volume $(pwd)/valuto-data:/valuto-data \
-  --publish 127.0.0.1:40332:40332 \
-  --publish 40333:40333 \
-  --publish 41333:41333 \
-  --name valutod \
-   valuto/valutod
+```bash
+docker start valutod
 ```
 
 Once the container is running, you can execute `valutod` from within the container:
 
 ```bash
-$ docker exec -it valutod ./valutod getblockheight
-(output)
+$ docker exec -it valutod ./valutod getblockcount
 ```
-
 
 ## Valuto
 
